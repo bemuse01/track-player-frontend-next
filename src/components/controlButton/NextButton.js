@@ -5,13 +5,6 @@ import { NextShape } from '@/components/shape'
 const NextButton = ({scale, color, pointerup}) => {
     const nextButtonClass = 'control-next-button aspect-square h-full flex justify-center items-center'
 
-    // button
-    const buttonClass = [
-        'w-full',
-        'h-full',
-        // 'scale-[0.58]'
-    ].join(' ')
-
 
     return(
         <div
@@ -19,7 +12,6 @@ const NextButton = ({scale, color, pointerup}) => {
         >
 
             <Button
-                className={buttonClass}
                 pointerup={pointerup}
                 scale={scale}
             >

@@ -1,10 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { SM } from '@/config/viewport'
 
 
 const useDevice = () => {
-    const {setIsMobile} = useStateStore()
-
+    const [isMobile, setIsMobile] = useState(false)
     const detectMobile = () => {
         const width = window.innerWidth
 
@@ -18,6 +17,9 @@ const useDevice = () => {
 
         }
     }
+
+
+    // event
     const onResize = () => {
         detectMobile()
     }
@@ -34,6 +36,9 @@ const useDevice = () => {
 
         return () => onUnmount() 
     }, [])
+
+
+    return isMobile
 }
 
 

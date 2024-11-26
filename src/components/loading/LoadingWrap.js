@@ -1,6 +1,7 @@
 import { motion, cubicBezier } from 'framer-motion'
 import { easeInOutQuint } from '@/config/easing'
 
+
 const LoadingWrap = ({size = 14}) => {
     // loading wrap 
     const loadWrapClass = 'loading-wrap w-full h-full flex justify-center items-center'
@@ -88,5 +89,6 @@ const LoadingWrap = ({size = 14}) => {
         </div>
     )
 }
+
 
 export default LoadingWrap

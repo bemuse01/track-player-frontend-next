@@ -5,13 +5,6 @@ import { LoopShape, UnloopShape } from '@/components/shape'
 const LoopButton = ({scale, color, pointerup, isLoop}) => {
     const loopButtonClass = 'control-loop-button aspect-square h-full flex justify-center items-center pl-[2px]'
 
-    // button
-    const buttonClass = [
-        'w-full',
-        'h-full',
-        // 'scale-[0.8]'
-    ].join(' ')
-
 
     return(
         <div
@@ -19,7 +12,6 @@ const LoopButton = ({scale, color, pointerup, isLoop}) => {
         >
 
             <Button
-                className={buttonClass}
                 scale={scale}
                 pointerup={pointerup}
             >

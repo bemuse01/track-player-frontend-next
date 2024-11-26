@@ -1,5 +1,6 @@
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import LoadingImage from '@/public/images/loading.gif'
+import Image from 'next/image'
 
 
 const ImageLoading = ({isLoading}) => {

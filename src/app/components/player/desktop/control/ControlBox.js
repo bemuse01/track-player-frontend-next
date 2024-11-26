@@ -2,46 +2,32 @@ import { PLAYER_BORDER_VALUE } from '@/config/style'
 import ButtonBox from './ButtonBox'
 import InfoBox from './InfoBox'
 import ProgressBox from './ProgressBox'
-import useMainData from '@/app/hooks/useMainData'
 
 
-const ControlWrap = () => {
-    // store
-    const {tracks, idx, player} = useMainData()
-
-
-    // 
-    const controlWrapClass = [
-        'control-wrap',
-        'w-full',
-        'absolute',
-        'h-auto',
-        'bottom-0',
-        'overflow-hidden',
-        'bg-white',
-    ].join(' ')
-    const controlWrapStyle = {
+const ControlBox = () => {
+    const controlBoxClass = 'control-box w-full absolute h-auto bottom-0 overflow-hidden bg-white'
+    const controlBoxStyle = {
         borderRadius: `${PLAYER_BORDER_VALUE}px`
     }
 
-    const controlBoxClass = 'w-full h-auto relative p-[8px] flex flex-col gap-[8px]'
+    const controlWrapperClass = 'w-full h-auto relative p-[8px] flex flex-col gap-[8px]'
 
 
     return(
         <div
-            className={controlWrapClass}
-            style={controlWrapStyle}
+            className={controlBoxClass}
+            style={controlBoxStyle}
         >
 
             <div
-                className={controlBoxClass}
+                className={controlWrapperClass}
             >
 
-                {/* <InfoBox tracks={tracks} idx={idx} />
+                <InfoBox />
 
-                <ProgressBox tracks={tracks} idx={idx} />
+                <ProgressBox />
 
-                <ButtonBox tracks={tracks} idx={idx} player={player} /> */}
+                <ButtonBox />
 
             </div>
 
@@ -50,4 +36,4 @@ const ControlWrap = () => {
 }
 
 
-export default ControlWrap
+export default ControlBox

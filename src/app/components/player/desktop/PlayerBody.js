@@ -4,6 +4,11 @@
 // import RecordWrap from './RecordWrap'
 // import ListWrap from './ListWrap'
 // import BgWrap from './BgWrap'
+import BgBox from './bg/bgBox'
+import ControlBox from './control/ControlBox'
+import SideBox from './side/SideBox'
+import ThumbBox from './thumbnail/ThumbBox'
+import VinylBox from './vinyl/VinylBox'
 
 
 const PlayerBody = () => {
@@ -24,15 +29,15 @@ const PlayerBody = () => {
                 className={playerBoxClass}
             >
 
-                {/* <RecordWrap />
+                <VinylBox />
 
-                <ListWrap />
+                <SideBox />
 
-                <BgWrap />
+                <BgBox />
 
-                <ThumbWrap />
+                <ThumbBox />
 
-                <ControlWrap /> */}
+                <ControlBox />
 
             </div>
 

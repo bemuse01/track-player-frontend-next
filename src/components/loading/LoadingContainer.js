@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 const LoadingContainer = ({isLoading, size, delay}) => {
     // loading container
     const color = '#ffffff'
-    const loadContClass = 'loading-container w-full h-full absolute'
+    const loadContClass = 'loading-container w-full h-full absolute z-[9999]'
     const loadContStyle = {
         background: color
     }
