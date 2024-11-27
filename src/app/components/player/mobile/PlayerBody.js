@@ -4,11 +4,19 @@
 // import RecordWrap from './RecordWrap'
 // import ListWrap from './ListWrap'
 // import BgWrap from './BgWrap'
+// 
+import useStateStore from '@/store/stateStore'
+import ControlBox from './control/ControlBox'
+import SideBox from './side/SideBox'
+import VinylBox from './vinyl/VinylBox'
 
 
 const PlayerBody = () => {
+    // store
+    const isListOpen = useStateStore(state => state.isListOpen)
+
     // player body
-    const playerBodyClass = 'player-body w-screen h-screen absolute flex justify-center items-center'
+    const playerBodyClass = 'player-body w-screen h-screen absolute flex justify-center items-center bg-white'
 
 
     // player box
@@ -49,6 +57,12 @@ const PlayerBody = () => {
 
                     </div>
                 } */}
+
+                { !isListOpen && <VinylBox /> }
+
+                { isListOpen && <SideBox /> }
+
+                <ControlBox />
 
             </div>
 

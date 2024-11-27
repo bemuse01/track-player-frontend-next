@@ -3,23 +3,16 @@ import ButtonBox from './ButtonBox'
 import InfoBox from './InfoBox'
 import ProgressBox from './ProgressBox'
 
-// etc
-import { PLAYER_BORDER_VALUE } from '@/config/style'
-
 
 const ControlBox = () => {
-    const controlBoxClass = 'control-box w-full absolute h-auto bottom-0 overflow-hidden bg-white'
-    const controlBoxStyle = {
-        borderRadius: `${PLAYER_BORDER_VALUE}px`
-    }
+    const controlBoxClass = 'control-box w-full h-auto overflow-hidden'
 
-    const controlWrapperClass = 'w-full h-auto relative p-[8px] flex flex-col gap-[8px]'
+    const controlWrapperClass = 'w-full h-auto relative pb-[16px] pt-[8px] px-[8px] flex flex-col gap-[8px]'
 
 
     return(
         <div
             className={controlBoxClass}
-            style={controlBoxStyle}
         >
 
             <div
