@@ -1,0 +1,34 @@
+# Node_modules and dependencies
+node_modules
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+.next
+out
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# MacOS files
+.DS_Store
+
+# Logs
+logs
+*.log
+
+# Temporary files and directories
+.tmp
+.cache
+
+# Git
+.git
+.gitignore
+
+# Docker-related files (optional, exclude Dockerfile and docker-compose files if necessary)
+Dockerfile
+docker-compose.yml
