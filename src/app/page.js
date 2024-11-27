@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react'
 
 // store
 import useDataStore from '@/store/dataStore'
-import useStateStore from '@/store/stateStore'
 
 // hooks
 import useDevice from '@/hooks/useDevice'
