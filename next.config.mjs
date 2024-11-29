@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'bemuseplayliststorage.blob.core.windows.net',
+                hostname: 'bemusetrackstorage.blob.core.windows.net',
                 port: '',
             }
         ]
