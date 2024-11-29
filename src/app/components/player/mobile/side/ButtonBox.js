@@ -20,6 +20,8 @@ const ButtonBox = ({color}) => {
     }
     const updateTrigger = useUpdate(onSuccessReload)
     const onClickReload = () => {
+        if(isReloading) return
+        
         setIsReloading(true)
         updateTrigger()
     }

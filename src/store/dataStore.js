@@ -7,6 +7,7 @@ const useDataStore = create((set, get) => ({
     tracks: null,
     trackIdx: 0,
     error: null,
+    messages: [],
 
 
     // playlists
@@ -21,6 +22,12 @@ const useDataStore = create((set, get) => ({
 
     // track order
     getTrackOrder: () => get().playlists.find(playlist => get().currentPlaylistId === playlist._id).track_order,
+
+
+    // message
+    setMessages: (newMessages) => set(() => ({messages: newMessages})),
+    addMessage: (newMessage) => set((state) => ({messages: [...state.messages, newMessage]})),
+    removeMessage: () => set((state) => ({messages: state.messages.slice(1, state.messages.length)})),
 
 
     // 

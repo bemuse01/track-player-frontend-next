@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 const ReloadButton = ({scale, color, isReloading, pointerup}) => {
     const animation = useMemo(() => {
         return isReloading ? 'rotating 1.2s infinite linear' : 'none'
-    })
+    }, [isReloading])
     const reloadButtonClass = 'reload-button aspect-square h-full flex justify-center items-center '
     const reloadButtonStyle = {
         animation

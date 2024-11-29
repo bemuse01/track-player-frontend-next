@@ -25,11 +25,11 @@ const VinylWrapper = () => {
 
 
     // vinyl wrapper
-    const vinylWrapperClass = 'vinyl-wrapper aspect-square h-full'
+    const vinylWrapperClass = 'vinyl-wrapper aspect-square h-full relative'
 
 
     // 
-    const vinylClass = 'w-full h-full translate-y-[-50%] scale-[1.9]'
+    const vinylClass = 'w-full h-full translate-y-[-50%] scale-[1.9] absolute'
 
 
     // vinyl anim

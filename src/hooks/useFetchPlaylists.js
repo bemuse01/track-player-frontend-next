@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 
 
 const method = 'get'
@@ -9,18 +10,32 @@ const api = process.env.NEXT_PUBLIC_API_PLAYLIST
 
 const fetcher = async url => {
     const res = await axios({method, url}) 
-    return res.data
+    return res
 }
 
 
 const useFetchPlaylists = (onSuccess = () => {}) => {
-    const {setPlaylists} = useDataStore()
+    const {setPlaylists, addMessage} = useDataStore()
 
-    const onSuccessFetchData = (newData) => {
-        const {playlists} = newData
-        setPlaylists(playlists)
+    const onSuccessFetchData = (res) => {
+        const status = res.status
+        const {data, error, message} = res.data
+        const id = uuidv4()
 
-        onSuccess(newData)
+        onSuccess(data)
+
+        switch (status) {
+            case 200:
+                setPlaylists(data)
+                // addMessage({id, message})
+                return
+            case 500:
+                setPlaylists(null)
+                addMessage({id, message})
+                return
+            default:
+                return
+        }
     }
     const config = {
         refreshInterval: 0,

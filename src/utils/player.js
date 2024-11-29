@@ -1,4 +1,4 @@
-export default class{
+export default class Player{
     constructor({set, get, tracks}){
         this.audio = null
         this.loaded = false

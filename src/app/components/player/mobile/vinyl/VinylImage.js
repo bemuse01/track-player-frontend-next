@@ -56,6 +56,8 @@ const VinylImage = ({url, w, h, color}) => {
                     className={vinylRawClass}
                 >
                     <Image
+                        fill
+                        sizes="(max-width: 768px) 100vmax, 50vmax"
                         src={Vinyl}
                         alt='vinyl'
                         priority={true}
@@ -68,7 +70,9 @@ const VinylImage = ({url, w, h, color}) => {
             <div
                 className={vinylOverlayClass}
             >
-                <Image 
+                <Image
+                    fill
+                    sizes="(max-width: 768px) 100vmax, 50vmax"
                     src={VinylOverlay}
                     alt='vinyl overlay'
                     priority={true}

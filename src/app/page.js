@@ -12,11 +12,13 @@ import useFetchPlaylists from '@/hooks/useFetchPlaylists'
 import useFetchTracks from '@/hooks/useFetchTracks'
 import useMainData from '@/hooks/useMainData'
 import usePlayer from '@/hooks/usePlayer'
+import useMessages from '@/hooks/useMessages'
 
 // components
 import PlayerDesktop from './components/player/desktop/PlayerDesktop'
 import PlayerMobile from './components/player/mobile/PlayerMobile'
 import LoadingContainer from '@/components/loading/LoadingContainer'
+import MessageContainer from '@/components/message/MessageContainer'
 
 
 const Root = () => {
@@ -28,6 +30,10 @@ const Root = () => {
 
     // root
     const rootClass = 'root w-full h-full absolute'
+
+
+    // message
+    useMessages()
 
 
     // loading
@@ -75,7 +81,9 @@ const Root = () => {
 
             {/* loading */}
             <LoadingContainer isLoading={isLoading} delay={1}/>
-            
+
+            {/* message */}
+            <MessageContainer />
 
             {/* player */}
             { isMobile ? <PlayerMobile /> : <PlayerDesktop /> }
