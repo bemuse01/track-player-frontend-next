@@ -14,14 +14,14 @@ const ButtonBox = ({color}) => {
 
     // reload
     const [isReloading, setIsReloading] = useState(false)
-    const onSuccessReload = (newData) => {
-        console.log(newData)
+    const onSuccessReload = (data) => {
+        // console.log(newData)
         setIsReloading(false)
     }
     const updateTrigger = useUpdate(onSuccessReload)
     const onClickReload = () => {
         if(isReloading) return
-        
+
         setIsReloading(true)
         updateTrigger()
     }

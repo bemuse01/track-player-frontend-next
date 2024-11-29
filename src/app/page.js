@@ -51,15 +51,15 @@ const Root = () => {
     // data
 
     // tracks
-    const onSuccessFetchTracks = (newData) => {
-        console.log(newData)
+    const onSuccessFetchTracks = (data) => {
+        // console.log(data)
         setIsLoading(false)
     }
     const trigger = useFetchTracks(onSuccessFetchTracks)
 
     // playlist
-    const onSuccessFecthPlaylists = (newData) => {
-        console.log(newData)
+    const onSuccessFecthPlaylists = (data) => {
+        // console.log(data)
     }
     useFetchPlaylists(onSuccessFecthPlaylists)
     useEffect(() => {
