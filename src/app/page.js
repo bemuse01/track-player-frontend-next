@@ -21,6 +21,10 @@ import LoadingContainer from '@/components/loading/LoadingContainer'
 import MessageContainer from '@/components/message/MessageContainer'
 
 
+// TODO consider to use router push (like: host.com/:playlistid)
+// TODO shrink vinyl image size
+
+
 const Root = () => {
     // store
     const {setCurrentPlaylistId} = useDataStore()
