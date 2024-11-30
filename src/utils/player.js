@@ -1,3 +1,5 @@
+// TODO fix this: cannot set currentTime when first time load audio or no cached, altough canplaythrough event fired
+
 export default class Player{
     constructor({set, get, tracks}){
         this.audio = null
