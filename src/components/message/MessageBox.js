@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Message from './Message'
 import useDataStore from '@/store/dataStore'
 
+// TODO background color will be red, when error
 
 const MessageBox = () => {
     // store

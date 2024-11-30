@@ -23,6 +23,7 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 // TODO consider to use router push (like: host.com/:playlistid)
 // TODO shrink vinyl image size
+// TODO optimize env variables usage such as process.env.API_TRACK => process.env.API_BASE_URL + process.env.API_PORT + process.env.API_TRACK
 
 
 const Root = () => {
