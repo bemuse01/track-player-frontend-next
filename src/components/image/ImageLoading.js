@@ -21,6 +21,8 @@ const ImageLoading = ({isLoading}) => {
                     className={imageLoadingClass}
                 >
                     <Image
+                        fill
+                        sizes="(max-width: 768px) 100vmax, 50vmax"
                         className={imgClass}
                         alt='loading'
                         src={LoadingImage}
