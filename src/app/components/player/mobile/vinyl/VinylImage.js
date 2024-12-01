@@ -19,7 +19,7 @@ const VinylImage = ({url, w, h, color}) => {
     const vinylImageStyle = {
         width: w,
         height: h,
-        border: `14px solid ${color}`,
+        border: `12px solid ${color}`,
         borderRadius: '50%'
     }
 

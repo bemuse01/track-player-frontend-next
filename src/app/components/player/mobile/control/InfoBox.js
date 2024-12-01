@@ -1,5 +1,5 @@
 // libs
-import { useEffect, useState } from 'react' 
+import { useCallback, useEffect, useState } from 'react' 
 
 // store
 import useDataStore from '@/store/dataStore'
@@ -34,22 +34,13 @@ const InfoBox = () => {
     const [artist, setArtist] = useState()
 
 
-    const setInfo = (title, artist) => {
-        if(title || artist){
-
-            setTitle(title)
-            setArtist(artist)
-
-        }else{
-
-            const trackOrder = getTrackOrder()
-            const id = trackOrder[idx]
-            const {title: newTitle, artist: newArtist} = getTrackById(id)
-            setTitle(newTitle)
-            setArtist(newArtist)
-
-        }
-    }
+    const setInfo = useCallback(() => {
+        const trackOrder = getTrackOrder()
+        const id = trackOrder[idx]
+        const {title: newTitle, artist: newArtist} = getTrackById(id)
+        setTitle(newTitle)
+        setArtist(newArtist)
+    }, [idx])
 
     useEffect(() => {
         if(tracks !== null){
@@ -57,7 +48,7 @@ const InfoBox = () => {
             setInfo()
 
         }
-    }, [tracks, idx])
+    }, [tracks, setInfo])
 
 
     return(

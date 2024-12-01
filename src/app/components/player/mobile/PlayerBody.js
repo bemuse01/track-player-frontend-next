@@ -16,7 +16,7 @@ const PlayerBody = () => {
     const isListOpen = useStateStore(state => state.isListOpen)
 
     // player body
-    const playerBodyClass = 'player-body w-screen h-screen absolute flex justify-center items-center bg-white'
+    const playerBodyClass = 'player-body w-full h-full absolute flex justify-center items-center bg-white'
 
 
     // player box

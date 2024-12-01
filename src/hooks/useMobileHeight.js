@@ -10,10 +10,12 @@ const useMobileHeight = () => {
         setHeight(h)
     }
     useEffect(() => {
+        onResize()
+
         window.addEventListener('resize', onResize)
 
         return () => window.removeEventListener('resize', onResize)
-    })
+    }, [])
 
     return height
 }

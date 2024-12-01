@@ -21,7 +21,10 @@ export async function POST(req, {params}){
 
     }catch(err){
 
-        return NextResponse.json({error: 'failed to load data'}, {status: 500})
+        console.log(err.response.data)
+        const {data} = err.response
+
+        return NextResponse.json(data, {status: 500})
 
     }
 }

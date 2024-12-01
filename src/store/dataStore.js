@@ -28,6 +28,7 @@ const useDataStore = create((set, get) => ({
     setMessages: (newMessages) => set(() => ({messages: newMessages})),
     addMessage: (newMessage) => set((state) => ({messages: [...state.messages, newMessage]})),
     removeMessage: () => set((state) => ({messages: state.messages.slice(1, state.messages.length)})),
+    removeMessageById: id => set((state) => ({messages: state.messages.filter(message => message.id !== id)})),
 
 
     // 

@@ -41,6 +41,9 @@ const useFetchTracks = (onSuccess = () => {}) => {
                 return
         }
     }
+    const onErrorReq = (err) => {
+        
+    }
     const config = {
         refreshInterval: 0,
         refreshWhenHidden: false,
@@ -48,7 +51,8 @@ const useFetchTracks = (onSuccess = () => {}) => {
         revalidateOnReconnect: false,
         revalidateIfStale: false,
         revalidateOnMount: false,
-        onSuccess: data => onSuccessFetchData(data)
+        onSuccess: data => onSuccessFetchData(data),
+        onError: err => onErrorReq(err)
     }
     const {trigger} = useSWRMutation(api, fetcher, config)
 

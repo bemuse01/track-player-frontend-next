@@ -2,6 +2,7 @@
 
 // lib
 import { useState, useEffect } from 'react'
+import { v4 as uuid } from 'uuid'
 
 // store
 import useDataStore from '@/store/dataStore'
@@ -28,7 +29,7 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 const Root = () => {
     // store
-    const {setCurrentPlaylistId} = useDataStore()
+    const {setCurrentPlaylistId, addMessage} = useDataStore()
     const playlists = useDataStore(state => state.playlists)
     const {tracks, idx} = useMainData()
 

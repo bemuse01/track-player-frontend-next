@@ -12,6 +12,13 @@ export const metadata = {
     description: "tracks from youtube playlist",
 }
 
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false
+}
+
 const RootLayout = ({children}) => {
     return (
         <html lang="en">

@@ -35,7 +35,7 @@ const useDevice = () => {
         init()
 
         return () => onUnmount() 
-    })
+    }, [])
 
 
     return isMobile

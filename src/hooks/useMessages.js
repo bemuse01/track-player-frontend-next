@@ -1,21 +1,25 @@
 import useDataStore from '@/store/dataStore'
 import { useEffect } from 'react'
+import { MESSAGE_LIFE_TIME } from '@/config/config'
 
+// TODO fix message time out logic
 
 const useMessages = () => {
-    const {removeMessage} = useDataStore()
+    const {removeMessageById} = useDataStore()
     const messages = useDataStore(state => state.messages)
     
-    const repeatTime = 3000
+    const velocity = 1 / 60 * 1000
     const removeOldMessage = () => {
-        if(messages.length === 0) return
-        removeMessage()
     }
     useEffect(() => {
-        const interval = setInterval(removeOldMessage, repeatTime)
+        // const animate = () => {
+        //     removeOldMessage()
+        //     requestAnimationFrame(animate)
+        // }
+        // animate()
 
-        return () => clearInterval(interval)
-    })
+        // return () => cancelAnimationFrame(animate)
+    }, [])
 }
 
 

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
 
-const method = 'get'
+const method = 'post'
 const api = process.env.NEXT_PUBLIC_API_UPDATE
 
 
@@ -14,26 +14,40 @@ const fetcher = async url => {
 }
 
 
-const useUpdate = (onSuccess = () => {}) => {
+const useUpdate = (onSuccess = () => {}, onError = () => {}) => {
     const {setPlaylists, addMessage} = useDataStore()
 
-    const onSuccessFetchData = (res) => {
+    const onSuccessReq = (res) => {
         const status = res.status
-        const {data, error, message} = res.data
+        const {data, code, message} = res.data
         const id = uuidv4()
+        const createdAt = window.performance.now()
 
         onSuccess(res.data)
 
         switch (status) {
             case 200:
                 setPlaylists(data)
-                addMessage({id, message})
+                addMessage({id, code, message, createdAt})
                 return
             case 204:
-                addMessage({id, message})
+                addMessage({id, code, message, createdAt})
                 return
+            default:
+                return 
+        }
+    }
+
+    const onErrorReq = (err) => {
+        const {status, response} = err
+        const {data, code, message} = response.data
+        const id = uuidv4()
+
+        onError()
+
+        switch (status) {
             case 500:
-                addMessage({id, message})
+                addMessage({id, code, message, createdAt})
                 return
             default:
                 return 
@@ -47,7 +61,8 @@ const useUpdate = (onSuccess = () => {}) => {
         revalidateOnReconnect: false,
         revalidateIfStale: false,
         revalidateOnMount: false,
-        onSuccess: data => onSuccessFetchData(data)
+        onSuccess: data => onSuccessReq(data),
+        onError: err => onErrorReq(err)
     }
     const {trigger} = useSWRMutation(api, fetcher, config)
 

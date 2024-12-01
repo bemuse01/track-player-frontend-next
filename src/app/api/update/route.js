@@ -2,13 +2,13 @@ import axios from 'axios'
 import { NextResponse } from 'next/server'
 import 'dotenv/config'
 
-export async function GET(req){
+export async function POST(req){
     try{
 
         console.log('/api/update')
 
         const option = {
-            method: 'get',
+            method: 'post',
             url: process.env.ENDPOINT_UPDATE
         }
 
@@ -21,7 +21,10 @@ export async function GET(req){
 
     }catch(err){
 
-        return NextResponse.json({error: 'failed to load data'}, {status: 500})
+        console.log(err.response.data)
+        const {data} = err.response
+
+        return NextResponse.json(data, {status: 500})
 
     }
 }
