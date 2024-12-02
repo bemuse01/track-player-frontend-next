@@ -1,6 +1,8 @@
 import useStateStore from '@/store/stateStore'
 import { useEffect } from 'react'
 
+// TODO retry to refactor here without depending on zustand. only react hooks(useState, useMemo etc...)
+
 const useLoad = () => {
     const {setLoadStats, setIsPageLoaded} = useStateStore()
     const loadStats = useStateStore(state => state.loadStats)
