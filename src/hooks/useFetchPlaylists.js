@@ -1,13 +1,13 @@
 import useSWR from 'swr'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
 import useMessage from './useMessage'
-import { NEXT_PUBLIC_API_PLAYLIST } from '@/config/const'
+// TODO export env not working on client, fix it or access to process.env
+// import { NEXT_PUBLIC_API_PLAYLIST } from '@/config/const'
 
 
 const method = 'get'
-const api = NEXT_PUBLIC_API_PLAYLIST
+const api = process.env.NEXT_PUBLIC_API_PLAYLIST
 
 
 const fetcher = async url => {
@@ -23,7 +23,6 @@ const useFetchPlaylists = (onSuccess = () => {}, onError = () => {}) => {
     const onSuccessReq = (res) => {
         const status = res.status
         const {data, code, message} = res.data
-        const id = uuidv4()
 
         onSuccess(data)
 

@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { NextResponse } from 'next/server'
-import { API_URL, API_PORT, API_ENDPOINT_PLAYLIST } from '@/config/const'
+import { API_URL, API_ENDPOINT_PLAYLIST } from '@/config/const'
 
 export async function GET(req){
     try{
 
         const method = 'get'
-        const url = `${API_URL}:${API_PORT}/${API_ENDPOINT_PLAYLIST}`
+        const url = `${API_URL}/${API_ENDPOINT_PLAYLIST}`
 
         const option = {method, url}
 

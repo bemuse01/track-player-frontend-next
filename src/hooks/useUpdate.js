@@ -2,11 +2,10 @@ import useSWRMutation from 'swr/mutation'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
 import useMessage from './useMessage'
-import { NEXT_PUBLIC_API_UPDATE } from '@/config/const'
 
 
 const method = 'post'
-const api = NEXT_PUBLIC_API_UPDATE
+const api = process.env.NEXT_PUBLIC_API_UPDATE
 
 
 const fetcher = async url => {

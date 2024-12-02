@@ -1,5 +1,3 @@
-import { useMemo } from 'react'
-
 const setBgColorByCode = (code) => {
     const letter = code.toString()[0]
 

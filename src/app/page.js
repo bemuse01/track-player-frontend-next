@@ -1,19 +1,18 @@
 'use client'
 
 // lib
-import { useState, useEffect } from 'react'
-import { v4 as uuid } from 'uuid'
+import { useState, useEffect, useRef } from 'react'
 
 // store
 import useDataStore from '@/store/dataStore'
+import useStateStore from '@/store/stateStore'
 
 // hooks
 import useDevice from '@/hooks/useDevice'
-import useFetchPlaylists from '@/hooks/useFetchPlaylists'
-import useFetchTracks from '@/hooks/useFetchTracks'
 import useMainData from '@/hooks/useMainData'
 import usePlayer from '@/hooks/usePlayer'
-import useMessages from '@/hooks/useMessage'
+import useLoad from '@/hooks/usePageLoad'
+import useInitialFetch from '@/hooks/useInitialFetch'
 
 // components
 import PlayerDesktop from './components/player/desktop/PlayerDesktop'
@@ -24,55 +23,29 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 // TODO consider to use router push (like: host.com/:playlistid)
 // TODO keep loading til complete to public images (vinyl, loading, default images)
+// TODO sometimes, cannot load first track 
 
 
 const Root = () => {
     // store
-    const {setCurrentPlaylistId, addMessage} = useDataStore()
     const playlists = useDataStore(state => state.playlists)
     const {tracks, idx} = useMainData()
+    const isPageLoaded = useStateStore(state => state.isPageLoaded)
 
 
     // root
     const rootClass = 'root w-full h-full absolute'
 
 
-    // loading
-    const [isLoading, setIsLoading] = useState(true)
-
-
+    // on page render
     // player
     usePlayer({tracks, idx})
-
 
     // detect device
     const isMobile = useDevice()
 
-
-    // data
-
-    // tracks
-    const onSuccessFetchTracks = (data) => {
-        // console.log(data)
-        setIsLoading(false)
-    }
-    const trigger = useFetchTracks(onSuccessFetchTracks)
-
-    // playlist
-    const onSuccessFecthPlaylists = (data) => {
-        // console.log(data)
-    }
-    useFetchPlaylists(onSuccessFecthPlaylists)
-    useEffect(() => {
-        if(playlists !== null){
-
-            const playlistId = playlists[0]._id
-
-            setCurrentPlaylistId(playlistId)
-            trigger(playlistId)
-
-        }
-    }, [playlists])
+    // initial fetch playlists, tracks
+    useInitialFetch({playlists})
 
 
     return(
@@ -81,7 +54,7 @@ const Root = () => {
         >
 
             {/* loading */}
-            <LoadingContainer isLoading={isLoading} delay={1}/>
+            <LoadingContainer isLoading={!isPageLoaded} delay={1}/>
 
             {/* message */}
             <MessageContainer />

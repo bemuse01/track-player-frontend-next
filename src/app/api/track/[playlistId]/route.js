@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { NextResponse } from 'next/server'
-import { API_URL, API_PORT, API_ENDPOINT_TRACK } from '@/config/const'
+import { API_URL, API_ENDPOINT_TRACK } from '@/config/const'
 
 export async function POST(req, {params}){
     try{
@@ -8,7 +8,7 @@ export async function POST(req, {params}){
         const {playlistId} = params
 
         const method = 'post'
-        const url = `${API_URL}:${API_PORT}/${API_ENDPOINT_TRACK}/${playlistId}`
+        const url = `${API_URL}/${API_ENDPOINT_TRACK}/${playlistId}`
 
         const option = {method, url}
 
