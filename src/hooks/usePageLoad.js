@@ -1,6 +1,5 @@
 import useStateStore from '@/store/stateStore'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { v4 as uuid } from 'uuid'
+import { useEffect } from 'react'
 
 const useLoad = () => {
     const {setLoadStats, setIsPageLoaded} = useStateStore()
