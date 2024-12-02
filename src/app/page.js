@@ -13,7 +13,7 @@ import useFetchPlaylists from '@/hooks/useFetchPlaylists'
 import useFetchTracks from '@/hooks/useFetchTracks'
 import useMainData from '@/hooks/useMainData'
 import usePlayer from '@/hooks/usePlayer'
-import useMessages from '@/hooks/useMessages'
+import useMessages from '@/hooks/useMessage'
 
 // components
 import PlayerDesktop from './components/player/desktop/PlayerDesktop'
@@ -36,10 +36,6 @@ const Root = () => {
 
     // root
     const rootClass = 'root w-full h-full absolute'
-
-
-    // message
-    useMessages()
 
 
     // loading

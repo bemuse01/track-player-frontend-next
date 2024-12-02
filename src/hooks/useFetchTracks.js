@@ -2,7 +2,7 @@ import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 import useSWRMutation from 'swr/mutation'
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
+import useMessage from './useMessage'
 
 
 const method = 'post'
@@ -16,34 +16,34 @@ const fetcher = async (url, {arg}) => {
 }
 
 
-const useFetchTracks = (onSuccess = () => {}) => {
-    const {setTracks, addMessage} = useDataStore()
+const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
+    const {setTracks} = useDataStore()
     const {setIdx} = usePlayerStore()
+    const {createMessage} = useMessage()
 
     const onSuccessFetchData = (res) => {
         const status = res.status
-        const {data, error, message} = res.data
-        const id = uuidv4()
-        
-        onSuccess(data)
+        const {code, data, message} = res.data
 
-        switch (status) {
-            case 200:
-                setTracks(data)
-                setIdx(0)
-                return
-            case 404:
-                addMessage({id, message})
-            case 500:
-                addMessage({id, message})
-                return
-            default:
-                return
+        if(status === 200){
+            setTracks(data)
+            setIdx(0)
+        }else{
+            createMessage(code, message)
         }
+
+        onSuccess(data)
     }
+
     const onErrorReq = (err) => {
-        
+        const {status, response} = err
+        const {data, code, message} = response.data
+
+        createMessage(code, message)
+
+        onError()
     }
+
     const config = {
         refreshInterval: 0,
         refreshWhenHidden: false,

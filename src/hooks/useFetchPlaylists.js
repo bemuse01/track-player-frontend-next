@@ -2,6 +2,7 @@ import useSWR from 'swr'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
+import useMessage from './useMessage'
 
 
 const method = 'get'
@@ -14,36 +15,41 @@ const fetcher = async url => {
 }
 
 
-const useFetchPlaylists = (onSuccess = () => {}) => {
-    const {setPlaylists, addMessage} = useDataStore()
+const useFetchPlaylists = (onSuccess = () => {}, onError = () => {}) => {
+    const {setPlaylists} = useDataStore()
+    const {createMessage} = useMessage()
 
-    const onSuccessFetchData = (res) => {
+    const onSuccessReq = (res) => {
         const status = res.status
-        const {data, error, message} = res.data
+        const {data, code, message} = res.data
         const id = uuidv4()
 
         onSuccess(data)
 
-        switch (status) {
-            case 200:
-                setPlaylists(data)
-                // addMessage({id, message})
-                return
-            case 500:
-                setPlaylists(null)
-                addMessage({id, message})
-                return
-            default:
-                return
+        if(status === 200){
+            setPlaylists(data)
+        }else{
+            createMessage(code, message)
         }
     }
+
+    const onErrorReq = (err) => {
+        const {status, response} = err
+        const {data, code, message} = response.data
+
+        createMessage(code, message)
+
+        onError()
+    }
+
     const config = {
         refreshInterval: 0,
         refreshWhenHidden: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         revalidateIfStale: false,
-        onSuccess: data => onSuccessFetchData(data)
+        onSuccess: data => onSuccessReq(data),
+        onError: err => onErrorReq(err)
     }
 
     // const {data, isLoading, error, mutate} = useSWR(url, fetcher(method), config)
