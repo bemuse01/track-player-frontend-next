@@ -14,11 +14,15 @@ const ButtonBox = ({color}) => {
 
     // reload
     const [isReloading, setIsReloading] = useState(false)
-    const onSuccessReload = (data) => {
+    const onErrorUpdate = () => {
+        console.log('update error')
+        setIsReloading(false)
+    }
+    const onSuccessUpdate = (data) => {
         // console.log(newData)
         setIsReloading(false)
     }
-    const updateTrigger = useUpdate(onSuccessReload)
+    const updateTrigger = useUpdate(onSuccessUpdate, onErrorUpdate)
     const onClickReload = () => {
         if(isReloading) return
 

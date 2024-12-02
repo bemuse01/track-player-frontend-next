@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Message from './Message'
 import useDataStore from '@/store/dataStore'
 
-// TODO background color will be red, when error
 
 const MessageBox = () => {
     // store
@@ -39,14 +38,14 @@ const MessageBox = () => {
             <AnimatePresence>
 
                 {
-                    messages.map(({id, message}) => (
+                    messages.map(({id, code, message}) => (
                         <motion.div
                             exit="exit"
                             variants={variants}
                             key={id}
                         >
         
-                            <Message msg={message} />
+                            <Message code={code} msg={message} />
         
                         </motion.div>
                     ))

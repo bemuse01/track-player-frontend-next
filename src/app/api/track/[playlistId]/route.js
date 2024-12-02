@@ -1,30 +1,32 @@
 import axios from 'axios'
 import { NextResponse } from 'next/server'
-import 'dotenv/config'
+import { API_URL, API_PORT, API_ENDPOINT_TRACK } from '@/config/const'
 
 export async function POST(req, {params}){
     try{
 
         const {playlistId} = params
 
-        const option = {
-            method: 'post',
-            url: process.env.ENDPOINT_TRACK + '/' + playlistId
-        }
+        const method = 'post'
+        const url = `${API_URL}:${API_PORT}/${API_ENDPOINT_TRACK}/${playlistId}`
+
+        const option = {method, url}
 
         const response = await axios(option)
 
         // console.log(response.data)
         // console.log(response.status)
+        const {data, status} = response
 
-        return NextResponse.json(response.data, {status: 200})
+        return NextResponse.json(data, {status})
 
     }catch(err){
 
-        console.log(err.response.data)
-        const {data} = err.response
+        const {data, status} = err.response
 
-        return NextResponse.json(data, {status: 500})
+        console.log(data, status)
+
+        return NextResponse.json(data, {status})
 
     }
 }

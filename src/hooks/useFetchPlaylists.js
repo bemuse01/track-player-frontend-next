@@ -3,10 +3,11 @@ import useDataStore from '@/store/dataStore'
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 import useMessage from './useMessage'
+import { NEXT_PUBLIC_API_PLAYLIST } from '@/config/const'
 
 
 const method = 'get'
-const api = process.env.NEXT_PUBLIC_API_PLAYLIST
+const api = NEXT_PUBLIC_API_PLAYLIST
 
 
 const fetcher = async url => {

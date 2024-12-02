@@ -15,6 +15,7 @@ const ButtonBox = ({color}) => {
     // reload
     const [isReloading, setIsReloading] = useState(false)
     const onErrorUpdate = () => {
+        console.log('update error')
         setIsReloading(false)
     } 
     const onSuccessUpdate = (data) => {
