@@ -11,7 +11,6 @@ import useStateStore from '@/store/stateStore'
 import useDevice from '@/hooks/useDevice'
 import useMainData from '@/hooks/useMainData'
 import usePlayer from '@/hooks/usePlayer'
-import useLoad from '@/hooks/usePageLoad'
 import useInitialFetch from '@/hooks/useInitialFetch'
 
 // components
@@ -22,9 +21,8 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 
 // TODO consider to use router push (like: host.com/:playlistid)
-// TODO sometimes, cannot load first track
 // TODO replace vinyl images to circle html element til complete to load, or delay page render til complete to load vinyl images
-
+// TODO setting audio current time by moving progress bar thumb by pointer(mouse, touch) with should be debounced by using lodash _.debounce
 
 const Root = () => {
     // store

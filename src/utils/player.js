@@ -10,10 +10,11 @@ export default class Player{
         this.isEnd = false
 
         this.onLoadStartEvent = () => {}
-        this.onLoadEvent = () => {}
+        // this.onLoadEvent = () => {}
         this.onEndEvent = () => {}
         this.onPlayEvent = () => {}
         this.onTimeupdateEvent = () => {}
+        this.onCanPlayEvent = () => {}
 
         this.init()
     }
@@ -31,16 +32,18 @@ export default class Player{
         this.audio.volume = 0.5
 
         this.onLoadStartEvent = () => this.onLoadStart()
-        this.onLoadEvent = () => this.onLoad()
+        // this.onLoadEvent = () => this.onLoad()
         this.onEndEvent = () => this.onEnd()
         this.onPlayEvent = () => this.onPlay()
         this.onTimeupdateEvent = () => this.onTimeupdate()
+        this.onCanPlayEvent = () => this.onCanPlay()
 
         this.audio.addEventListener('loadstart', this.onLoadStartEvent)
-        this.audio.addEventListener('canplaythrough', this.onLoadEvent)
+        // this.audio.addEventListener('canplaythrough', this.onLoadEvent)
         this.audio.addEventListener('ended', this.onEndEvent)
         this.audio.addEventListener('play', this.onPlayEvent)
         this.audio.addEventListener('timeupdate', this.onTimeupdateEvent)
+        this.audio.addEventListener('canplay', this.onCanPlayEvent)
     }
 
 
@@ -50,10 +53,11 @@ export default class Player{
         this.change('')
 
         this.audio.removeEventListener('loadstart', this.onLoadStartEvent)
-        this.audio.removeEventListener('canplaythrough', this.onLoadEvent)
+        // this.audio.removeEventListener('canplaythrough', this.onLoadEvent)
         this.audio.removeEventListener('ended', this.onEndEvent)
         this.audio.removeEventListener('play', this.onPlayEvent)
         this.audio.removeEventListener('timeupdate', this.onTimeupdateEvent)
+        this.audio.removeEventListener('canplay', this.onCanPlayEvent)
     }
 
 
@@ -129,6 +133,17 @@ export default class Player{
         }
 
         this.set({duration: 0})
+    }
+    onCanPlay(){
+        this.set({isLoaded: true})
+        this.set({duration: this.getDuration()})
+        this.setLoaded(true)
+
+        if(this.isEnd && !this.audio.loop){
+            this.play()
+        }
+
+        this.isEnd = false
     }
     onLoad(){
         this.set({isLoaded: true})

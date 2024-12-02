@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 // TODO retry to refactor here without depending on zustand. only react hooks(useState, useMemo etc...)
 
-const useLoad = () => {
+const usePageLoad = () => {
     const {setLoadStats, setIsPageLoaded} = useStateStore()
     const loadStats = useStateStore(state => state.loadStats)
     
@@ -35,4 +35,4 @@ const useLoad = () => {
 }
 
 
-export default useLoad
+export default usePageLoad
