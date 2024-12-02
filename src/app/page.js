@@ -22,7 +22,6 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 
 // TODO consider to use router push (like: host.com/:playlistid)
-// TODO keep loading til complete to public images (vinyl, loading, default images)
 // TODO sometimes, cannot load first track
 // TODO replace vinyl images to circle html element til complete to load, or delay page render til complete to load vinyl images
 

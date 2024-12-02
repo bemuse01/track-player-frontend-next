@@ -3,6 +3,7 @@ import usePlayerStore from '@/store/playerStore'
 import useSWRMutation from 'swr/mutation'
 import axios from 'axios'
 import useMessage from './useMessage'
+import 'dotenv/config'
 
 
 const method = 'post'

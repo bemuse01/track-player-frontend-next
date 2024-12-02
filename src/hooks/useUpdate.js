@@ -2,6 +2,7 @@ import useSWRMutation from 'swr/mutation'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
 import useMessage from './useMessage'
+import 'dotenv/config'
 
 
 const method = 'post'
