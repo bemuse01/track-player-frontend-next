@@ -2,10 +2,10 @@
 import { motion, AnimatePresence } from 'framer-motion'
 
 // store
+import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
 
 // hooks
-import useUrl from '@/hooks/useUrl'
 import useMainData from '@/hooks/useMainData'
 import useColor from '@/hooks/useColor'
 
@@ -21,7 +21,7 @@ const VinylWrapper = () => {
     const {tracks, idx} = useMainData()
     const direction = usePlayerStore(state => state.direction)
     const {color} = useColor({tracks, idx})
-    const {url} = useUrl({tracks, idx})
+    const thumbnailUrl = useDataStore(state => state.thumbnailUrl)
 
 
     // vinyl wrapper
@@ -73,7 +73,7 @@ const VinylWrapper = () => {
                 <AnimatePresence>
 
                     <motion.div
-                        key={url}
+                        key={thumbnailUrl}
                         className={vinylAnimClass}
                         initial={direction === 1 ? 'initial' : 'exit'}
                         animate="animate"
@@ -82,7 +82,7 @@ const VinylWrapper = () => {
                     >
 
                         <VinylImage 
-                            url={url}
+                            url={thumbnailUrl}
                             w={w} 
                             h={h} 
                             color={color} 

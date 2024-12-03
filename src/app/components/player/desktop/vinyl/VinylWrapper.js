@@ -2,11 +2,8 @@
 import { motion, AnimatePresence, cubicBezier } from 'framer-motion'
 
 // store
+import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
-
-// hooks
-import useUrl from '@/hooks/useUrl'
-import useMainData from '@/hooks/useMainData'
 
 // components
 import VinylImage from './VinylImage'
@@ -17,8 +14,7 @@ import { DEFAULT_SPRING, easeOutCirc } from '@/config/easing'
 
 const VinylWrapper = () => {
     // store
-    const {tracks, idx} = useMainData()
-    const {url} = useUrl({tracks, idx})
+    const thumbnailUrl = useDataStore(state => state.thumbnailUrl)
     const isPlaying = usePlayerStore(state => state.isPlaying)
 
 
@@ -75,7 +71,7 @@ const VinylWrapper = () => {
                     >
 
                         <VinylImage 
-                            url={url} 
+                            url={thumbnailUrl} 
                             w={w} 
                             h={h} 
                         />

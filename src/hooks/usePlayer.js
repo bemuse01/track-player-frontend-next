@@ -1,29 +1,45 @@
 import { useEffect } from 'react'
 import usePlayerStore from '@/store/playerStore'
 import useDataStore from '@/store/dataStore'
+import useFetchUrl from './useFetchUrl'
 
 
 const usePlayer = ({tracks, idx}) => {
     const {getTrackById, getTrackOrder} = useDataStore()
-    const {setPlayer, change, dispose, setIdx} = usePlayerStore()
+    const {setPlayer, change, dispose} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
-    
+
+
+    // swr
+    const onError = () => {
+        change('')
+    }
+    const onSuccess = (data) => {
+        console.log(data)
+        change(data)
+    }
+    const urlTrigger = useFetchUrl(onSuccess, onError)
+
 
     // player
     const initPlayer = () => {
         const trackOrder = getTrackOrder()
         const id = trackOrder[idx]
-        const {audio_url} = getTrackById(id)
+        const {track_id, audio} = getTrackById(id)
+        const {type} = audio
+        const query = `?id=${track_id}&type=${type}`
 
         setPlayer(tracks)
-        change(audio_url)
+        urlTrigger(query)
     }
     const changeByIdx = () => {
         const trackOrder = getTrackOrder()
         const id = trackOrder[idx]
-        const {audio_url} = getTrackById(id)
+        const {track_id, audio} = getTrackById(id)
+        const {type} = audio
+        const query = `?id=${track_id}&type=${type}`
 
-        change(audio_url)
+        urlTrigger(query)
     }
 
     useEffect(() => {

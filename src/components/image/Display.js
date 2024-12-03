@@ -8,7 +8,9 @@ const Display = ({url, onLoad = () => {}}) => {
     return(
         <Image
             fill
-            sizes="(max-width: 768px) 100vmax, 50vmax"
+            unoptimized
+            // sizes="(max-width: 768px) 100vmax, 50vmax"
+            // sizes="720px"
             className={ImageDisplayClass}
             src={url}
             alt='display'

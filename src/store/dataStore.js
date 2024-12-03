@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import defaultThumb from '@/public/images/default.jpg'
 
 
 const useDataStore = create((set, get) => ({
@@ -8,6 +9,9 @@ const useDataStore = create((set, get) => ({
     trackIdx: 0,
     error: null,
     messages: [],
+    thumbnailUrl: defaultThumb.src,
+    audioUrl: '',
+
 
 
     // playlists
@@ -29,6 +33,14 @@ const useDataStore = create((set, get) => ({
     addMessage: (newMessage) => set((state) => ({messages: [...state.messages, newMessage]})),
     removeMessage: () => set((state) => ({messages: state.messages.slice(1, state.messages.length)})),
     removeMessageById: id => set((state) => ({messages: state.messages.filter(message => message.id !== id)})),
+
+
+    // thumbnail
+    setThumbnailUrl: (url) => set(() => ({thumbnailUrl: url})),
+
+
+    // audio
+    setAudioUrl: (url) => set(() => ({audioUrl: url})),
 
 
     // 

@@ -2,11 +2,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
 // store
+import useDataStore from '@/store/dataStore'
 import usePlayerStore from '@/store/playerStore'
-
-// hook
-import useUrl from '@/hooks/useUrl'
-import useMainData from '@/hooks/useMainData'
 
 // components
 import { ImageLoader } from '@/components/image'
@@ -17,12 +14,8 @@ import { DEFAULT_SPRING } from '@/config/easing'
 
 const ThumbImage = () => {
     // store
-    const {tracks, idx} = useMainData()
+    const thumbnailUrl = useDataStore(state => state.thumbnailUrl)
     const direction = usePlayerStore(state => state.direction)
-
-
-    // hooks
-    const {url} = useUrl({tracks, idx})
 
 
     // image box
@@ -67,14 +60,14 @@ const ThumbImage = () => {
             <AnimatePresence>
             
                 <motion.div
-                    key={url}
+                    key={thumbnailUrl}
                     initial={direction === 1 ? 'initial' : 'exit'}
                     animate="animate"
                     exit={direction === 1 ? 'exit' : 'initial'}
                     variants={variants}
                     className={imageAnimClass}
                 >
-                    <ImageLoader url={url} />
+                    <ImageLoader url={thumbnailUrl} />
                 </motion.div>
 
             </AnimatePresence>

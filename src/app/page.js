@@ -12,6 +12,7 @@ import useDevice from '@/hooks/useDevice'
 import useMainData from '@/hooks/useMainData'
 import usePlayer from '@/hooks/usePlayer'
 import useInitialFetch from '@/hooks/useInitialFetch'
+import useThumbnailUrl from '@/hooks/useThumbnailUrl'
 
 // components
 import PlayerDesktop from './components/player/desktop/PlayerDesktop'
@@ -43,6 +44,9 @@ const Root = () => {
 
     // initial fetch playlists, tracks
     useInitialFetch({playlists})
+
+    // fetch resource
+    useThumbnailUrl({tracks, idx})
 
 
     return(
