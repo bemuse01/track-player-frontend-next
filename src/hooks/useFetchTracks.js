@@ -3,11 +3,11 @@ import usePlayerStore from '@/store/playerStore'
 import useSWRMutation from 'swr/mutation'
 import axios from 'axios'
 import useMessage from './useMessage'
-import 'dotenv/config'
+import { NEXT_PUBLIC_API_TRACK } from '@/config/const'
 
 
 const method = 'post'
-const api = process.env.NEXT_PUBLIC_API_TRACK
+const api = NEXT_PUBLIC_API_TRACK
 
 
 const fetcher = async (url, {arg}) => {

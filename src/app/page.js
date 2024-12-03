@@ -21,8 +21,8 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 
 // TODO consider to use router push (like: host.com/:playlistid)
-// TODO replace vinyl images to circle html element til complete to load, or delay page render til complete to load vinyl images
 // TODO setting audio current time by moving progress bar thumb by pointer(mouse, touch) with should be debounced by using lodash _.debounce
+
 
 const Root = () => {
     // store

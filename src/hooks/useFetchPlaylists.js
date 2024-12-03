@@ -2,13 +2,11 @@ import useSWR from 'swr'
 import useDataStore from '@/store/dataStore'
 import axios from 'axios'
 import useMessage from './useMessage'
-import 'dotenv/config'
-// TODO export env not working on client, fix it or access to process.env
-// import { NEXT_PUBLIC_API_PLAYLIST } from '@/config/const'
+import { NEXT_PUBLIC_API_PLAYLIST } from '@/config/const'
 
 
 const method = 'get'
-const api = process.env.NEXT_PUBLIC_API_PLAYLIST
+const api = NEXT_PUBLIC_API_PLAYLIST
 
 
 const fetcher = async url => {
