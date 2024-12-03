@@ -2,11 +2,12 @@
 import Image from 'next/image'
 
 // components
-import ImageComp from '@/components/image/ImageComp'
+import { ImageLoader, ImagePlaceholder } from '@/components/image'
 
 // etc
 import Vinyl from '@/public/images/vinyl.png'
 import VinylOverlay from '@/public/images/vinyl_overlay.png'
+import { VINYL_PLACEHOLDER_COLOR } from '@/config/style'
 
 
 const VinylImage = ({url, w, h}) => {
@@ -16,16 +17,16 @@ const VinylImage = ({url, w, h}) => {
         height: h,
     }
 
-    const vinylAnimClass = 'w-full h-full flex justify-center items-center absolute'
+    const vinylAnimClass = 'w-full h-full flex justify-center items-center absolute rounded-full overflow-hidden'
     const vinylAnimStyle = {
-        animation: 'rotating 15s linear infinite'
+        animation: 'rotating 15s linear infinite',
     }
 
-    const thumbClass = 'w-[50%] h-[50%] absolute rotate-[-40deg]'
+    const thumbClass = 'w-[50%] h-[50%] absolute rotate-[-40deg] rounded-full overflow-hidden'
 
     const vinylRawClass = 'w-full h-full absolute'
 
-    const vinylOverlayClass = 'w-full h-full mix-blend-overlay absolute'
+    const vinylOverlayClass = 'w-full h-full mix-blend-overlay absolute rounded-full overflow-hidden'
 
 
     return(
@@ -42,20 +43,15 @@ const VinylImage = ({url, w, h}) => {
                 <div
                     className={thumbClass}
                 >
-                    <ImageComp url={url} />
+                    <ImageLoader url={url} />
                 </div>
 
                 <div
                     className={vinylRawClass}
                 >
-                    <Image
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        quality={100}
-                        src={Vinyl}
-                        alt='vinyl'
-                        priority={true}
-                        draggable={false}
+                    <ImagePlaceholder
+                        url={Vinyl}
+                        color={VINYL_PLACEHOLDER_COLOR}
                     />
                 </div>
 
@@ -64,14 +60,9 @@ const VinylImage = ({url, w, h}) => {
             <div
                 className={vinylOverlayClass}
             >
-                <Image
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    quality={100}
-                    src={VinylOverlay}
-                    alt='vinyl overlay'
-                    priority={true}
-                    draggable={false}
+                <ImagePlaceholder
+                    url={VinylOverlay}
+                    color={VINYL_PLACEHOLDER_COLOR}
                 />
             </div>
 

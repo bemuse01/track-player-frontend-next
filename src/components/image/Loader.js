@@ -3,8 +3,8 @@ import LoadingImage from '@/public/images/loading.gif'
 import Image from 'next/image'
 
 
-const ImageLoading = ({isLoading}) => {
-    const imageLoadingClass = 'w-full h-full absolute'
+const Loader = ({isLoading}) => {
+    const loaderClass = 'w-full h-full absolute'
 
     const imgClass = 'w-full h-full object-cover absolute'
 
@@ -18,7 +18,7 @@ const ImageLoading = ({isLoading}) => {
                     animate={{opacity: 1}}
                     exit={{opacity: 0}}
                     transition={{duration: 0.3}}
-                    className={imageLoadingClass}
+                    className={loaderClass}
                 >
                     <Image
                         fill
@@ -37,4 +37,4 @@ const ImageLoading = ({isLoading}) => {
 }
 
 
-export default ImageLoading
+export default Loader

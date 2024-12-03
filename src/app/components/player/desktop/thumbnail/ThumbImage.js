@@ -9,7 +9,7 @@ import useUrl from '@/hooks/useUrl'
 import useMainData from '@/hooks/useMainData'
 
 // components
-import ImageComp from '@/components/image/ImageComp'
+import { ImageLoader } from '@/components/image'
 
 // etc
 import { DEFAULT_SPRING } from '@/config/easing'
@@ -74,7 +74,7 @@ const ThumbImage = () => {
                     variants={variants}
                     className={imageAnimClass}
                 >
-                    <ImageComp url={url} />
+                    <ImageLoader url={url} />
                 </motion.div>
 
             </AnimatePresence>

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 
-const ImageDisplay = ({url, onLoad = () => {}}) => {
+const Display = ({url, onLoad = () => {}}) => {
     const ImageDisplayClass = 'w-full h-full object-cover absolute'
 
     
@@ -11,7 +11,7 @@ const ImageDisplay = ({url, onLoad = () => {}}) => {
             sizes="(max-width: 768px) 100vmax, 50vmax"
             className={ImageDisplayClass}
             src={url}
-            alt='thumbnail'
+            alt='display'
             priority={true}
             onLoad={onLoad}
             draggable={false}
@@ -20,4 +20,4 @@ const ImageDisplay = ({url, onLoad = () => {}}) => {
 }
 
 
-export default ImageDisplay
+export default Display
