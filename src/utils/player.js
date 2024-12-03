@@ -68,7 +68,7 @@ export default class Player{
     setCurrentTime(time){
         if(isNaN(time)) return
         this.audio.currentTime = time
-        console.log(time, this.audio.currentTime, this.getDuration())
+        // console.log(time, this.audio.currentTime, this.getDuration())
     }
     setVolume(volume){
         this.audio.volume = volume
