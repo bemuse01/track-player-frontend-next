@@ -21,7 +21,6 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 
 // TODO consider to use router push (like: host.com/:playlistid)
-// TODO setting audio current time by moving progress bar thumb by pointer(mouse, touch) with should be debounced by using lodash _.debounce
 
 
 const Root = () => {
