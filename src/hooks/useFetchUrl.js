@@ -4,7 +4,6 @@ import useSWRMutation from 'swr/mutation'
 import axios from 'axios'
 
 
-// TODO refator to get request SAS url to backend with swr fetch 
 const method = 'get'
 const api = NEXT_PUBLIC_API_RESOURCE
 
