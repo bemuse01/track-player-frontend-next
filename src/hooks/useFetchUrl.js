@@ -29,7 +29,7 @@ const useFetchUrl = (onSuccess = () => {}, onError = () => {}) => {
         const {status, response} = err
         const {data, code, message} = response.data
 
-        console.log(data, code, message)
+        // console.log(data, code, message)
 
         createMessage(code, message)
 

@@ -15,7 +15,7 @@ const usePlayer = ({tracks, idx}) => {
         change('')
     }
     const onSuccess = (data) => {
-        console.log(data)
+        // console.log(data)
         change(data)
     }
     const urlTrigger = useFetchUrl(onSuccess, onError)
