@@ -20,7 +20,8 @@ export async function GET(req){
 
     }catch(err){
 
-        const {data, status} = err.response
+        const data = err?.response?.data || null
+        const status = err?.response?.status || 500
 
         console.log(data, status)
 
