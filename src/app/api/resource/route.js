@@ -21,7 +21,7 @@ export async function GET(req){
 
         const {data, status} = response
 
-        console.log('RESPONSEEEEEEEEEEEEEEEEEEEEEE: ', data)
+        // console.log('RESPONSEEEEEEEEEEEEEEEEEEEEEE: ', data)
 
         return NextResponse.json(data, {status})
 
