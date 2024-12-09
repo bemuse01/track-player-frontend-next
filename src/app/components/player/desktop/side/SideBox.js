@@ -85,7 +85,8 @@ const SideBox = () => {
                     selectedListMenu={selectedListMenu}
                 />
 
-                <ScrollBox 
+                <ScrollBox
+                    tracks={tracks}
                     items={items} 
                     color={color} 
                     idx={idx} 

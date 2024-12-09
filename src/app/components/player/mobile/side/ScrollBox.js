@@ -1,9 +1,21 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { PLAYER_BORDER_VALUE } from '@/config/style'
 import ItemSwitcher from './ItemSwitcher'
+import useFetchTracks from '@/hooks/useFetchTracks'
 
 
-const ScrollBox = ({items, color, idx, currentPlaylistId, selectedListMenu}) => {
+const ScrollBox = ({tracks, items, color, idx, currentPlaylistId, selectedListMenu}) => {
+    // 
+    const lastTrackId = useMemo(() => {
+        const lastTrack = tracks[tracks.length - 1]
+        return lastTrack?.track_id
+    }, [tracks])
+
+
+    // hooks
+    const trackTrigger = useFetchTracks()
+
+
     // scroll box
     const scrollBoxClass = 'scroll-box w-full flex-1 py-[8px] bg-white relative overflow-hidden'
     const scrollBoxStyle = {
@@ -20,13 +32,20 @@ const ScrollBox = ({items, color, idx, currentPlaylistId, selectedListMenu}) => 
     const scrollStyle = {
         color
     }
+    const onScroll = useCallback((e) => {
+        const {scrollHeight, clientHeight, scrollTop} = e.target
+        const hasReachedEnd = scrollHeight <= clientHeight + scrollTop
+
+        if(hasReachedEnd){
+            trackTrigger({playlistId: currentPlaylistId, lastTrackId})
+        }
+    }, [currentPlaylistId, lastTrackId])
 
 
     // scroll bar
     const setScrollThumbColor = () => {
         document.documentElement.style.setProperty('--scrollbar-color', color)
     }
-
     useEffect(() => {
         setScrollThumbColor()
     }, [color])
@@ -45,6 +64,7 @@ const ScrollBox = ({items, color, idx, currentPlaylistId, selectedListMenu}) => 
                 <div
                     className={scrollClass}
                     style={scrollStyle}
+                    onScroll={e => onScroll(e)}
                 >
 
                     <ItemSwitcher 

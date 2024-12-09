@@ -1,7 +1,6 @@
 'use client'
 
 // lib
-import { useState, useEffect, useRef } from 'react'
 
 // store
 import useDataStore from '@/store/dataStore'
@@ -22,6 +21,7 @@ import MessageContainer from '@/components/message/MessageContainer'
 
 
 // TODO consider to use router push (like: host.com/:playlistid)
+// TODO 모바일에서 비닐 컴포넌트 썸네일의 화질이 안좋은 문제
 
 
 const Root = () => {

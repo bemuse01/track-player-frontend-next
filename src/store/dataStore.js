@@ -3,9 +3,9 @@ import defaultThumb from '@/public/images/default.jpg'
 
 
 const useDataStore = create((set, get) => ({
-    playlists: null,
-    currentPlaylistId: null,
-    tracks: null,
+    playlists: [],
+    currentPlaylistId: '',
+    tracks: [],
     trackIdx: 0,
     error: null,
     messages: [],
@@ -25,7 +25,7 @@ const useDataStore = create((set, get) => ({
 
 
     // track order
-    getTrackOrder: () => get().playlists.find(playlist => get().currentPlaylistId === playlist._id).track_order,
+    getTrackOrder: () => get().playlists.find(playlist => get().currentPlaylistId === playlist._id)?.track_order,
 
 
     // message

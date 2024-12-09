@@ -14,11 +14,13 @@ const useItems = () => {
         switch(selectedListMenu){
             case LIST_MENU.TRACK:
 
-                if(tracks === null) return []
-                const trackOrder = getTrackOrder()
+                if(tracks.length === 0) return []
+                const trackOrder = getTrackOrder() || []
 
                 return trackOrder.map((id, i) => {
-                    const {artist, title} = getTrackById(id)
+                    const track = getTrackById(id)
+                    const artist = track?.artist
+                    const title = track?.title
 
                     return {
                         key: id,

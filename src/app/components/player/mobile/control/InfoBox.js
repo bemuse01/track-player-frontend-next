@@ -43,7 +43,7 @@ const InfoBox = () => {
     }, [idx])
 
     useEffect(() => {
-        if(tracks !== null){
+        if(tracks.length !== 0){
 
             setInfo()
 

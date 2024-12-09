@@ -20,7 +20,7 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
 
 
     // hooks
-    const trigger = useFetchTracks()
+    const trackTrigger = useFetchTracks()
 
 
     // track
@@ -32,8 +32,8 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
 
     // playlist
     const onClickPlaylistItem = (playlistId) => {
-        trigger(playlistId)
         setCurrentPlaylistId(playlistId)
+        trackTrigger({playlistId})
     }
 
 

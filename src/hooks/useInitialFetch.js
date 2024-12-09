@@ -20,7 +20,7 @@ const useInitialFetch = ({playlists}) => {
     const onSuccessFetchTracks = () => {
         setLoadStatToDone(loadId.current)
     }
-    const trigger = useFetchTracks(onSuccessFetchTracks)
+    const trackTrigger = useFetchTracks(onSuccessFetchTracks)
 
 
     // data: playlist
@@ -28,12 +28,13 @@ const useInitialFetch = ({playlists}) => {
     }
     useFetchPlaylists(onSuccessFecthPlaylists)
     useEffect(() => {
-        if(playlists !== null){
+        if(playlists.length !== 0){
 
-            const playlistId = playlists[0]._id
+            const playlist = playlists[0]
+            const playlistId = playlist?._id
 
             setCurrentPlaylistId(playlistId)
-            trigger(playlistId)
+            trackTrigger({playlistId})
 
         }
     }, [playlists])

@@ -43,7 +43,7 @@ const usePlayer = ({tracks, idx}) => {
     }
 
     useEffect(() => {
-        if(tracks !== null){
+        if(tracks.length !== 0){
 
             if(player !== null) dispose()
 

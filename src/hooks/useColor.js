@@ -32,7 +32,7 @@ const useColor = ({tracks, idx}) => {
 
     useEffect(() => {
 
-        if(tracks !== null){
+        if(tracks.length !== 0){
             setColorByData()
         }
         

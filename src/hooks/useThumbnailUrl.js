@@ -30,9 +30,7 @@ const useThumbnailUrl = ({tracks, idx}) => {
     }, [idx])
 
     useEffect(() => {
-        if(tracks !== null){
-            if(tracks.length !== 0) changeUrl()
-        }
+        if(tracks.length !== 0) changeUrl()
     }, [tracks, changeUrl])
 }
 
