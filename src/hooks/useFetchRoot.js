@@ -1,29 +1,22 @@
 import useDataStore from '@/store/dataStore'
-import usePlayerStore from '@/store/playerStore'
 import useSWRMutation from 'swr/mutation'
 import axios from 'axios'
 import useMessage from './useMessage'
-import { NEXT_PUBLIC_API_TRACK } from '@/config/const'
-import _ from 'lodash'
-import { useEffect } from 'react'
 
 
-const method = 'post'
-const api = NEXT_PUBLIC_API_TRACK
+const method = 'get'
+const api = '/api/'
 
 
-const fetcher = async (url, {arg}) => {
-    // const {playlistId, lastTrackId} = arg
-    const data = arg || {}
-    const res = await axios({method, url, data}) 
+const fetcher = async (url) => {
+    const res = await axios({method, url}) 
     return res
 }
 
 
-const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
+const useFetchRoot = (onSuccess = () => {}, onError = () => {}) => {
     // store
-    const {addTracks} = useDataStore()
-    const {setIdx} = usePlayerStore()
+    const {setMaxPlaylistCount} = useDataStore()
     const {createMessage} = useMessage()
 
 
@@ -32,8 +25,7 @@ const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
         const {code, data, message} = res.data
 
         if(status === 200){
-            addTracks(data)
-            setIdx(0)
+            setMaxPlaylistCount(data)
         }else{
             createMessage(code, message)
         }
@@ -43,7 +35,6 @@ const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
 
     const onErrorReq = (err) => {
         const {status, response} = err
-        // const {data, code, message} = response?.data?
         const data = response?.data?.data
         const code = response?.data?.code
         const message = response?.data?.message
@@ -70,4 +61,4 @@ const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
 }
 
 
-export default useFetchTracks
+export default useFetchRoot

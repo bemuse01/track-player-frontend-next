@@ -1,19 +1,30 @@
-import { useMemo, useEffect, useState } from 'react'
+import { useMemo, useEffect, useState, useCallback } from 'react'
 import { BRIGHTNESS_THRESHOLD_WHITE, BRIGHTNESS_THRESHOLD_BLACK, DEFAULT_COLOR, DEFAULT_COLOR_2 } from '@/config/style'
 import { getBrightness } from '@/utils/color'
 import useDataStore from '@/store/dataStore'
+import useTrackOrder from './useTrackOrder'
 
 
 const useColor = ({tracks, idx}) => {
-    const {getTrackById, getTrackOrder} = useDataStore()
+    // store
+    const {getTrackById} = useDataStore()
+
+
+    // hooks
+    const trackOrder = useTrackOrder()
+
 
     const [color, setColor] = useState(DEFAULT_COLOR)
-    const setColorByData = () => {
-        const trackOrder = getTrackOrder()
+    const setColorByData = useCallback(() => {
         const id = trackOrder[idx]
-        const mainColor = '#' + getTrackById(id).main_color
-        setColor(mainColor)
-    }
+
+        if(!id) return
+
+        const track = getTrackById(id)
+        const main_color = track?.main_color
+        const newColor = '#' + main_color
+        setColor(newColor)
+    }, [trackOrder, idx])
     
     const newColor = useMemo(() => {
         const bright = getBrightness(color)
@@ -36,7 +47,7 @@ const useColor = ({tracks, idx}) => {
             setColorByData()
         }
         
-    }, [tracks, idx])
+    }, [tracks, setColorByData])
     
 
     return {color: newColor, color2: newColor2, originalColor: color}

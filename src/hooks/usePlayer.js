@@ -1,13 +1,18 @@
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import usePlayerStore from '@/store/playerStore'
 import useDataStore from '@/store/dataStore'
 import useFetchUrl from './useFetchUrl'
+import useTrackOrder from './useTrackOrder'
 
 
 const usePlayer = ({tracks, idx}) => {
-    const {getTrackById, getTrackOrder} = useDataStore()
+    const {getTrackById} = useDataStore()
     const {setPlayer, change, dispose} = usePlayerStore()
     const player = usePlayerStore(state => state.player)
+
+
+    // hooks
+    const trackOrder = useTrackOrder()
 
 
     // swr
@@ -22,43 +27,49 @@ const usePlayer = ({tracks, idx}) => {
 
 
     // player
-    const initPlayer = () => {
-        const trackOrder = getTrackOrder()
+    const initPlayer = useCallback(() => {
         const id = trackOrder[idx]
-        const {track_id, audio} = getTrackById(id)
-        const {type} = audio
+        if(!id) return
+
+        const track = getTrackById(id)
+        const track_id = track?.track_id
+        const audio = track?.audio
+        const type = audio?.type
         const query = `?id=${track_id}&type=${type}`
+
+        if(!track_id || !audio || !type) return
 
         setPlayer(tracks)
-        urlTrigger(query)
-    }
-    const changeByIdx = () => {
-        const trackOrder = getTrackOrder()
+        // urlTrigger(query)
+    }, [trackOrder, idx, tracks])
+
+    const changeByIdx = useCallback(() => {
         const id = trackOrder[idx]
-        const {track_id, audio} = getTrackById(id)
-        const {type} = audio
+        if(!id) return
+
+        const track = getTrackById(id)
+        const track_id = track?.track_id
+        const audio = track?.audio
+        const type = audio?.type
         const query = `?id=${track_id}&type=${type}`
 
+        if(!track_id || !audio || !type) return
+
         urlTrigger(query)
-    }
+    }, [trackOrder, idx])
 
     useEffect(() => {
-        if(tracks.length !== 0){
+        if(tracks.length === 0) return
 
-            if(player !== null) dispose()
-
-            initPlayer()
-            
-        }
-
-    }, [tracks])
+        dispose()
+        initPlayer()
+    }, [initPlayer, tracks])
 
     useEffect(() => {
-        if(player !== null){
-            changeByIdx()
-        }
+        if(player === null) return
 
-    }, [player, idx])
+        changeByIdx()
+    }, [changeByIdx, player])
 }
 
 

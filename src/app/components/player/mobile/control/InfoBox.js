@@ -1,18 +1,16 @@
-// libs
-import { useCallback, useEffect, useState } from 'react' 
-
-// store
-import useDataStore from '@/store/dataStore'
-
 // hooks
 import useColor from '@/hooks/useColor'
 import useMainData from '@/hooks/useMainData'
+import useInfo from '@/hooks/useInfo'
 
 
 const InfoBox = () => {
     // store
     const {tracks, idx} = useMainData()
-    const {getTrackById, getTrackOrder} = useDataStore()
+
+
+    // hooks
+    const {title, artist} = useInfo()
     const {color} = useColor({tracks, idx})
 
 
@@ -26,29 +24,10 @@ const InfoBox = () => {
 
     // title
     const titleClass = 'h-auto text-[30px] text-center'
-    const [title, setTitle] = useState()
 
 
     // artist
     const artistClass = 'h-auto text-[20px] text-center'
-    const [artist, setArtist] = useState()
-
-
-    const setInfo = useCallback(() => {
-        const trackOrder = getTrackOrder()
-        const id = trackOrder[idx]
-        const {title: newTitle, artist: newArtist} = getTrackById(id)
-        setTitle(newTitle)
-        setArtist(newArtist)
-    }, [idx])
-
-    useEffect(() => {
-        if(tracks.length !== 0){
-
-            setInfo()
-
-        }
-    }, [tracks, setInfo])
 
 
     return(

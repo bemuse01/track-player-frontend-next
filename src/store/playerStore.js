@@ -25,7 +25,7 @@ const usePlayerStore = create((set, get) => ({
     getCurrentTime: () => get().player.getCurrentTime(),
     getDuration: () => get().player.getDuration(),
     toggleLoop: () => get().player.toggleLoop(),
-    dispose: () => get().player.dispose(),
+    dispose: () => get().player?.dispose(),
 
 
     // idx

@@ -1,13 +1,11 @@
 // libs
 import { cubicBezier, motion } from 'framer-motion'
-import { useState } from 'react'
 
 // store
 import useStateStore from '@/store/stateStore'
 
 // hooks
 import useItems from '@/hooks/useItems'
-import useUpdate from '@/hooks/useUpdate'
 
 // components
 import ScrollBox from './ScrollBox'
@@ -86,7 +84,6 @@ const SideBox = () => {
                 />
 
                 <ScrollBox
-                    tracks={tracks}
                     items={items} 
                     color={color} 
                     idx={idx} 

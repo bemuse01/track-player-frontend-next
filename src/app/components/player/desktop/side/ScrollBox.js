@@ -1,30 +1,12 @@
-import { useCallback, useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { PLAYER_BORDER_VALUE } from '@/config/style'
 import ItemSwitcher from './ItemSwitcher'
-import useFetchTracks from '@/hooks/useFetchTracks'
-import useDataStore from '@/store/dataStore'
+import useScrollFetch from '@/hooks/useScrollFetch'
 
 
-const ScrollBox = ({tracks, items, color, idx, currentPlaylistId, selectedListMenu}) => {
-    // store
-    const {getTrackOrder} = useDataStore()
-
-
-    // 
-    const lastTrackId = useMemo(() => {
-        const lastTrack = tracks[tracks.length - 1]
-        return lastTrack?.track_id
-    }, [tracks])
-    const dontNeedLoadMore = useMemo(() => {
-        const trackOrder = getTrackOrder() || []
-        console.log(trackOrder)
-        console.log(tracks)
-        return trackOrder.length === tracks.length
-    }, [tracks])
-
-
+const ScrollBox = ({items, color, idx, currentPlaylistId, selectedListMenu}) => {
     // hooks
-    const trackTrigger = useFetchTracks()
+    const fetchDataOnScroll = useScrollFetch()
 
 
     // scroll box
@@ -43,18 +25,14 @@ const ScrollBox = ({tracks, items, color, idx, currentPlaylistId, selectedListMe
     const scrollStyle = {
         color
     }
-    const onScroll = useCallback((e) => {
+    const onScroll = (e) => {
         const {scrollHeight, clientHeight, scrollTop} = e.target
         const hasReachedEnd = scrollHeight <= clientHeight + scrollTop
 
         if(hasReachedEnd){
-
-            if(dontNeedLoadMore) return
-
-            trackTrigger({playlistId: currentPlaylistId, lastTrackId})
-
+            fetchDataOnScroll()
         }
-    }, [lastTrackId, currentPlaylistId, dontNeedLoadMore])
+    }
 
 
     // scroll bar

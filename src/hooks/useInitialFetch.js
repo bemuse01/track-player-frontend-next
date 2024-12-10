@@ -4,6 +4,7 @@ import useDataStore from '@/store/dataStore'
 import useFetchPlaylists from './useFetchPlaylists'
 import useFetchTracks from './useFetchTracks'
 import { useEffect, useRef } from 'react'
+import useFetchRoot from './useFetchRoot'
 
 
 const useInitialFetch = ({playlists}) => {
@@ -26,12 +27,20 @@ const useInitialFetch = ({playlists}) => {
     // data: playlist
     const onSuccessFecthPlaylists = () => {
     }
-    useFetchPlaylists(onSuccessFecthPlaylists)
+    const playlistTrigger = useFetchPlaylists(onSuccessFecthPlaylists)
+
+
+
+    // data: root
+    const rootTrigger = useFetchRoot()
+
+
+    // 
     useEffect(() => {
         if(playlists.length !== 0){
 
             const playlist = playlists[0]
-            const playlistId = playlist?._id
+            const playlistId = playlist?.playlist_id
 
             setCurrentPlaylistId(playlistId)
             trackTrigger({playlistId})
@@ -43,6 +52,8 @@ const useInitialFetch = ({playlists}) => {
     // 
     useEffect(() => {
         addLoadStat(loadId.current)
+        rootTrigger()
+        playlistTrigger()
     }, [])
 }
 

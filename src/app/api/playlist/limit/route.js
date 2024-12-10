@@ -2,17 +2,21 @@ import axios from 'axios'
 import { NextResponse } from 'next/server'
 import { API_URL, API_ENDPOINT_PLAYLIST } from '@/config/const'
 
-export async function GET(req){
+export async function POST(req){
     try{
 
-        const method = 'get'
+        const body = await req.json()
+        const { lastObjectId } = body
+        console.log(lastObjectId)
+
+        const method = 'post'
         const url = `${API_URL}/${API_ENDPOINT_PLAYLIST}`
 
-        const option = {method, url}
+        const option = {method, url, data: body}
 
         const response = await axios(option)
 
-        // console.log(response.data)
+        console.log(response.data)
         // console.log(response.status)
         const {data, status} = response
 

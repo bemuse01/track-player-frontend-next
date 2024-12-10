@@ -1,5 +1,5 @@
 const setBgColorByCode = (code) => {
-    const letter = code.toString()[0]
+    const letter = code?.toString()[0] || 999
 
     const green = ' bg-green-500'
     const orange = ' bg-orange-500'
@@ -13,7 +13,7 @@ const setBgColorByCode = (code) => {
         case '5':
             return red
         default:
-            return green
+            return red
     }
 }
 
