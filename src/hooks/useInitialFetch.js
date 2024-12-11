@@ -25,7 +25,12 @@ const useInitialFetch = ({playlists}) => {
 
 
     // data: playlist
-    const onSuccessFecthPlaylists = () => {
+    const onSuccessFecthPlaylists = (playlists) => {
+        const playlist = playlists[0]
+        const playlistId = playlist?.playlist_id
+
+        setCurrentPlaylistId(playlistId)
+        trackTrigger({playlistId})
     }
     const playlistTrigger = useFetchPlaylists(onSuccessFecthPlaylists)
 
@@ -36,17 +41,17 @@ const useInitialFetch = ({playlists}) => {
 
 
     // 
-    useEffect(() => {
-        if(playlists.length !== 0){
+    // useEffect(() => {
+    //     if(playlists.length !== 0){
 
-            const playlist = playlists[0]
-            const playlistId = playlist?.playlist_id
+    //         const playlist = playlists[0]
+    //         const playlistId = playlist?.playlist_id
 
-            setCurrentPlaylistId(playlistId)
-            trackTrigger({playlistId})
+    //         setCurrentPlaylistId(playlistId)
+    //         trackTrigger({playlistId})
 
-        }
-    }, [playlists])
+    //     }
+    // }, [playlists])
 
 
     // 

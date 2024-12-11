@@ -23,7 +23,6 @@ const fetcher = async (url, {arg}) => {
 const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
     // store
     const {addTracks} = useDataStore()
-    const {setIdx} = usePlayerStore()
     const {createMessage} = useMessage()
 
 
@@ -33,7 +32,6 @@ const useFetchTracks = (onSuccess = () => {}, onError = () => {}) => {
 
         if(status === 200){
             addTracks(data)
-            setIdx(0)
         }else{
             createMessage(code, message)
         }

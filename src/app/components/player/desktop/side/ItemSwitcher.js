@@ -18,7 +18,6 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
     const {setCurrentPlaylistId, setTracks} = useDataStore()
     const {setIdx, pause} = usePlayerStore()
 
-
     // hooks
     const trackTrigger = useFetchTracks()
 
@@ -31,8 +30,12 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
 
 
     // playlist
-    const onClickPlaylistItem = (playlistId) => {
+    const resetTrackInfo = () => {
         setTracks([])
+        setIdx(0)
+    }
+    const onClickPlaylistItem = (playlistId) => {
+        resetTrackInfo()
         setCurrentPlaylistId(playlistId)
         trackTrigger({playlistId})
     }

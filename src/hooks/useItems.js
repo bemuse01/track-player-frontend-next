@@ -48,7 +48,7 @@ const useItems = () => {
         }
 
         
-    }, [tracks, selectedListMenu, trackOrder])
+    }, [tracks, selectedListMenu, trackOrder, playlists])
 
 
     return items

@@ -31,8 +31,12 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
 
 
     // playlist
-    const onClickPlaylistItem = (playlistId) => {
+    const resetTrackInfo = () => {
         setTracks([])
+        setIdx(0)
+    }
+    const onClickPlaylistItem = (playlistId) => {
+        resetTrackInfo()
         setCurrentPlaylistId(playlistId)
         trackTrigger({playlistId})
     }

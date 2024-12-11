@@ -16,7 +16,7 @@ export async function POST(req){
 
         const response = await axios(option)
 
-        console.log(response.data)
+        // console.log(response.data)
         // console.log(response.status)
         const {data, status} = response
 

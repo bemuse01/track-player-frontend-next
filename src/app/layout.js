@@ -1,10 +1,25 @@
-import { Oxanium } from 'next/font/google'
+import { Oxanium, Noto_Sans_KR, Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
 
 const oxanium = Oxanium({
     weight: '500',
-    variable: '--font-open-sans',
-    subsets: ['latin']
+    variable: '--font-oxanium',
+    subsets: ['latin'],
+    display: 'swap'
+})
+
+const noto_sans_kr  = Noto_Sans_KR({
+    weight: '500',
+    variable: '--font-noto-sans-kr',
+    preload: false,
+    display: 'swap'
+})
+
+const noto_sans_jp = Noto_Sans_JP({
+    weight: '500',
+    variable: '--font-noto-sans-jp',
+    preload: false,
+    display: 'swap'
 })
 
 export const metadata = {
@@ -23,7 +38,7 @@ const RootLayout = ({children}) => {
     return (
         <html lang="en">
             <body
-                className={`${oxanium.className} antialiased`}
+                className={`${oxanium.variable} ${noto_sans_kr.variable} ${noto_sans_jp.variable} antialiased`}
             >
                 {children}
             </body>
