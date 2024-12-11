@@ -2,12 +2,16 @@ import { useEffect, useCallback } from 'react'
 import useDataStore from '@/store/dataStore'
 import defaultThumb from '@/public/images/default.jpg'
 import useFetchUrl from './useFetchUrl'
-import useTrackOrder from './useTrackOrder'
+import useCurrentTrack from './useCurrentTrack'
 
 
 const useThumbnailUrl = ({tracks, idx}) => {
+    // store
     const {getTrackById, setThumbnailUrl} = useDataStore()
-    const trackOrder = useTrackOrder()
+
+
+    // hooks
+    const track = useCurrentTrack()
 
 
     // swr
@@ -22,10 +26,8 @@ const useThumbnailUrl = ({tracks, idx}) => {
 
     // url
     const changeUrl = useCallback(() => {
-        const id = trackOrder[idx]
-        if(!id) return
+        if(!track) return
 
-        const track = getTrackById(id)
         const track_id = track?.track_id
         const thumbnail = track?.thumbnail
         const type = thumbnail?.type
@@ -34,13 +36,11 @@ const useThumbnailUrl = ({tracks, idx}) => {
         if(!track_id || !thumbnail || !type) return
 
         urlTrigger(query)
-    }, [idx, trackOrder, tracks])
+    }, [track])
 
     useEffect(() => {
-        if(tracks.length === 0) return
-
         changeUrl()
-    }, [tracks, changeUrl])
+    }, [changeUrl])
 }
 
 

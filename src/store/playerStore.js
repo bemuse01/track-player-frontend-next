@@ -15,7 +15,7 @@ const usePlayerStore = create((set, get) => ({
 
 
     // player
-    setPlayer: tracks => set(() => ({player: new Player({set, get, tracks})})),
+    setPlayer: () => set(() => ({player: new Player({set, get})})),
     play: () => get().player.play(),
     pause: () => get().player.pause(),
     change: src => get().player.change(src),
@@ -25,6 +25,7 @@ const usePlayerStore = create((set, get) => ({
     getCurrentTime: () => get().player.getCurrentTime(),
     getDuration: () => get().player.getDuration(),
     toggleLoop: () => get().player.toggleLoop(),
+    setTrackCount: (count) => get().player.setTrackCount(count),
     dispose: () => get().player?.dispose(),
 
 

@@ -16,7 +16,7 @@ import { LIST_MENU } from '@/config/config'
 const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) => {
     // store
     const {setCurrentPlaylistId, setTracks} = useDataStore()
-    const {setIdx, pause} = usePlayerStore()
+    const {setIdx, pause, dispose} = usePlayerStore()
 
 
     // hooks
@@ -31,11 +31,15 @@ const ItemSwitcher = ({items, color, idx, currentPlaylistId, selectedListMenu}) 
 
 
     // playlist
+    const resetPlayer = () => {
+        dispose()
+    }
     const resetTrackInfo = () => {
         setTracks([])
         setIdx(0)
     }
     const onClickPlaylistItem = (playlistId) => {
+        resetPlayer()
         resetTrackInfo()
         setCurrentPlaylistId(playlistId)
         trackTrigger({playlistId})

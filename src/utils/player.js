@@ -1,12 +1,12 @@
 // TODO fix this: cannot set currentTime when first time load audio or no cached, altough canplaythrough event fired
 
 export default class Player{
-    constructor({set, get, tracks}){
+    constructor({set, get}){
         this.audio = null
         this.loaded = false
         this.set = set
         this.get = get
-        this.tracks = tracks
+        this.trackCount = 0
         this.isEnd = false
 
         this.onLoadStartEvent = () => {}
@@ -52,12 +52,12 @@ export default class Player{
         this.pause()
         this.change('')
 
-        this.audio.removeEventListener('loadstart', this.onLoadStartEvent)
+        // this.audio.removeEventListener('loadstart', this.onLoadStartEvent)
         // this.audio.removeEventListener('canplaythrough', this.onLoadEvent)
-        this.audio.removeEventListener('ended', this.onEndEvent)
-        this.audio.removeEventListener('play', this.onPlayEvent)
-        this.audio.removeEventListener('timeupdate', this.onTimeupdateEvent)
-        this.audio.removeEventListener('canplay', this.onCanPlayEvent)
+        // this.audio.removeEventListener('ended', this.onEndEvent)
+        // this.audio.removeEventListener('play', this.onPlayEvent)
+        // this.audio.removeEventListener('timeupdate', this.onTimeupdateEvent)
+        // this.audio.removeEventListener('canplay', this.onCanPlayEvent)
     }
 
 
@@ -75,6 +75,9 @@ export default class Player{
     }
     setLoaded(newValue){
         this.loaded = newValue
+    }
+    setTrackCount(count){
+        this.trackCount = count
     }
 
 
@@ -160,7 +163,7 @@ export default class Player{
     onEnd(){
         this.set({isPlaying: false})
         this.isEnd = true
-        if(!this.audio.loop) this.get().increaseIdx(this.tracks.length - 1)
+        if(!this.audio.loop) this.get().increaseIdx(this.trackCount - 1)
     }
     onPlay(){
         this.set({isPlaying: true})
