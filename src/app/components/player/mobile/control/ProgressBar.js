@@ -93,10 +93,11 @@ const ProgressBar = ({color, idx}) => {
 
 
     // on render
+    const raf = useRef(null)
     const animate = () => {
         update()
 
-        requestAnimationFrame(animate)
+        raf.current = requestAnimationFrame(animate)
     }
     const init = () => {
         document.addEventListener('touchend', onTouchend)
@@ -114,7 +115,7 @@ const ProgressBar = ({color, idx}) => {
     useEffect(() => {
         if(player !== null) animate()
 
-        return () => cancelAnimationFrame(animate)
+        return () => cancelAnimationFrame(raf.current)
     }, [player])
 
 
